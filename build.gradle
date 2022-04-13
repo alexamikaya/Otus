@@ -1,5 +1,8 @@
 plugins {
     id 'java'
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+
 }
 
 group 'org.example'
@@ -8,12 +11,26 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-
+dependencyManagement{
+    imports{
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.5.4'
+    }
+}
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
 }
 
+shadowJar {
+    setArchivesBaseName('gradleHelloWorld')
+    archiveVersion.set('0.1')
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'Application'
+    }
+}
+tasks.build.dependsOn tasks.shadowJar
 test {
     useJUnitPlatform()
 }
