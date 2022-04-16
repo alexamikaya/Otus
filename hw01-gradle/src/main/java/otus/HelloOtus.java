@@ -4,7 +4,7 @@ import com.google.common.math.IntMath;
 
 import java.math.RoundingMode;
 
-public class helloOtus {
+public class HelloOtus {
         public static void main(String args[]) {
 
             int a = 121;
