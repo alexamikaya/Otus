@@ -3,8 +3,6 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -22,6 +20,3 @@ shadowJar {
     }
 }
 tasks.build.dependsOn tasks.shadowJar
-test {
-    useJUnitPlatform()
-}
