@@ -16,7 +16,7 @@ shadowJar {
     archiveVersion.set('0.1')
     archiveClassifier.set('')
     manifest {
-        attributes 'Main-Class': 'otus.helloOtus'
+        attributes 'Main-Class': 'otus.HelloOtus'
     }
 }
 tasks.build.dependsOn tasks.shadowJar
