@@ -1,21 +1,24 @@
 package test;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import otus.ForTest;
+import testframework.annotations.After;
+import testframework.annotations.Before;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static testframework.classes.Equal.Equals;
 
 class ForTestTest {
     ForTest test = new ForTest();
     private final ArrayList a = new ArrayList();
 
-    @BeforeEach
+    @Before
     void setUp() {
        for(int i = 0; i < 100; i++){
            a.add(i++);
@@ -23,18 +26,18 @@ class ForTestTest {
 
     }
 
-    @AfterEach
+    @After
     void tearDown() {
         a.clear();
     }
 
 
-    @Test
-    void add() {
+    @testframework.annotations.Test
+     void add() {
         for(int i = 0; i < a.size(); i++) {
 
             if(i==49) {
-                Assertions.assertEquals(5, test.add(i), "test failed");
+                Equals(5, test.add(i), "test failed");
             }
 
         }
