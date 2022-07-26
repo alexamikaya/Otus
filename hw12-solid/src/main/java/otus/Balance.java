@@ -1,6 +1,6 @@
 package otus;
 
-//выдаем баланс
+/*выдаем баланс, старый класс
 
 public class Balance {
 
@@ -11,4 +11,4 @@ public class Balance {
                 "ATM machine balance = " + sum);
         return sum;
     }
-}
+}*/

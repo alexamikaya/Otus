@@ -2,10 +2,11 @@ package otus;
 
 // Рассчитываем сколько купюр можем выдать
 public class GetMoney {
-    int summ100;
-    int summ200;
-    int summ500;
-    int summ1000;
+    Money getMoney=new Money(0,0,0,0);
+    int summ100= getMoney.getSum100();
+    int summ200=getMoney.getSum200();
+    int summ500=getMoney.getSum500();
+    int summ1000=getMoney.getSum1000();
 
 
 
@@ -73,8 +74,8 @@ public class GetMoney {
             summ500 =sum500;
             summ1000 =sum1000;
         }
-        Balance balance=new Balance();
-        balance.getBalance(getSumm100(),getSumm200(),getSumm500(),getSumm1000());
+        Bank balance=new Bank(getSumm100(),getSumm200(),getSumm500(),getSumm1000(),0);
+        balance.getSum();
         return 0;
     }
     public int getSumm100(){

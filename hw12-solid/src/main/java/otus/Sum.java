@@ -7,13 +7,13 @@ import java.util.Map;
 //считаем купюры
 public class Sum {
     private Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-    private int sum100;
-    private int sum200;
-    private int sum500;
-    private int sum1000;
+    Money sum = new Money(0,0,0,0);
+    int sum100= sum.getSum100();
+    int sum200=sum.getSum200();
+    int sum500=sum.getSum500();
+    int sum1000=sum.getSum1000();
 
-
-
+    //заводим купюры
     public void add(Integer bank, Integer nom) throws IOException, ClassNotFoundException {
 
         map.put(bank, nom);
@@ -26,7 +26,7 @@ public class Sum {
 
         return map;
     }
-
+//считаем сумму купюр
     public ArrayList<Integer> getMoney(){
         sum100=0;
         sum200=0;
