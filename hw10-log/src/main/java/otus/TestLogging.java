@@ -1,24 +1,29 @@
 package otus;
 
-import java.lang.annotation.Annotation;
 import java.util.logging.Logger;
 
-public class TestLogging {
+public class TestLogging implements ClassInterface{
     private static Logger log = Logger.getLogger(TestLogging.class.getName());
-    Log logg;
-    @Log(logs= "executed method: calculation, param:" )
+
+    @Log
     public void calculation(int param) {
-        log.info(logg.logs() + param);
-        
+        log.info("executed method: calculation, param:" + param);
+
     }
-    @Log(logs= "executed method: calculation, param1, param2:" )
+    @Log
     public void calculation(int param1, int param2) {
-        log.info(logg.logs() + param1+" , "+param2);
+        log.info("executed method: calculation, param:" + param1+ " , "+ param2);
+
     }
-    @Log(logs= "executed method: calculation, param1, param2, param3:" )
+    @Log
     public void calculation(int param1, int param2, String param3) {
+        log.info("executed method: calculation, param:" + param1+ " , "+ param2+" , "+ param3);
 
-
-        log.info( logg.logs()+ param1+" , "+param2+" , "+param3);
     }
+    @Override
+    public String toString(){
+        return "MainClass{}";
+    }
+
+
 }
