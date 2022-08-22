@@ -10,15 +10,13 @@ repositories {
 
 dependencies {
     implementation 'com.google.guava:guava'
-    implementation 'junit:junit:4.13.1'
-    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 }
 shadowJar {
     setArchivesBaseName('gradleHelloWorld')
     archiveVersion.set('0.1')
     archiveClassifier.set('')
     manifest {
-        attributes 'Main-Class': 'otus.Sqrt'
+        attributes 'Main-Class': 'otus.Proxy'
     }
 }
 tasks.build.dependsOn tasks.shadowJar
