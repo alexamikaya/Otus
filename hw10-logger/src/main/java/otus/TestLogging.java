@@ -1,24 +1,26 @@
 package otus;
 
-import java.util.logging.Logger;
-
 public class TestLogging implements ClassInterface{
-    private static Logger log = Logger.getLogger(TestLogging.class.getName());
+
 
     @Log
-    public void calculation(int param) {
-        log.info("executed method: calculation, param:" + param);
+    public String calc1(int param) {
+        String params=param+"";
+        System.out.println(params);
 
+        return params;
     }
     @Log
-    public void calculation(int param1, int param2) {
-        log.info("executed method: calculation, param:" + param1+ " , "+ param2);
-
+    public String calc2(int param1, int param2) {
+        String params=param1+ " , "+ param2;
+       System.out.println(params);
+        return params;
     }
 
-    public void calculation(int param1, int param2, String param3) {
-        log.info("executed method: calculation, param:" + param1+ " , "+ param2+" , "+ param3);
-
+    public String calc3(int param1, int param2, String param3) {
+        String params=param1+ " , "+ param2+ " , "+ param3;
+        System.out.println(params);
+        return params;
     }
     @Override
     public String toString(){
