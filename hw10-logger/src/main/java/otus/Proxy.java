@@ -1,5 +1,6 @@
 package otus;
 
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
@@ -39,4 +40,6 @@ public class Proxy {
         }
     }
 }
+
+
 
