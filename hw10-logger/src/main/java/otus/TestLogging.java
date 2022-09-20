@@ -21,6 +21,7 @@ public class TestLogging implements ClassInterface{
         String params=param1+ " , "+ param2+ " , "+ param3;
         System.out.println(params);
         return params;
+
     }
     @Override
     public String toString(){
