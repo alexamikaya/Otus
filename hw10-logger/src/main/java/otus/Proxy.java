@@ -17,7 +17,7 @@ public class Proxy {
     }
 
     public static void logg(){
-        Class<TestLogging> testlogging=TestLogging.class;
+        Class<ClassInterface> testlogging=ClassInterface.class;
         Logger logger = new Logger();
         for (Method method : testlogging.getDeclaredMethods()){
             Annotation annotation = method.getAnnotation(Log.class);
@@ -26,7 +26,7 @@ public class Proxy {
             if (log!=null){
                 try{
                     if (name=="calc1"){
-                    logger.calculation(calc1);}
+                        logger.calculation(calc1);}
                     else if (name=="calc2"){
                         logger.calculation(calc2);}
                     else if (name=="calc3"){

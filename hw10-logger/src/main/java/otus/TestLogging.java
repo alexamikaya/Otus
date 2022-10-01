@@ -3,17 +3,17 @@ package otus;
 public class TestLogging implements ClassInterface{
 
 
-    @Log
+
     public String calc1(int param) {
         String params=param+"";
         System.out.println(params);
 
         return params;
     }
-    @Log
+
     public String calc2(int param1, int param2) {
         String params=param1+ " , "+ param2;
-       System.out.println(params);
+        System.out.println(params);
         return params;
     }
 
