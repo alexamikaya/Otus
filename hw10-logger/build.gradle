@@ -10,6 +10,8 @@ repositories {
 
 dependencies {
     implementation 'com.google.guava:guava'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.9.5-RC2'
+
 }
 shadowJar {
     setArchivesBaseName('gradleHelloWorld')
