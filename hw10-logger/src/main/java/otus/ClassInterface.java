@@ -1,5 +1,5 @@
 package otus;
-@Log
+
 public interface ClassInterface {
     @Log
     String calc1(int param);
