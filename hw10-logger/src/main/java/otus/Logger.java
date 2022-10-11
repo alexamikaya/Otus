@@ -6,5 +6,4 @@ public class Logger {
         log.info("executed method: "+calculation+", param:" + param);
 
     }
-
 }
