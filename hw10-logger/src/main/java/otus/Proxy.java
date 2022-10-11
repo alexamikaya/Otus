@@ -68,21 +68,21 @@ public class Proxy {
 
         for (Class clazz : classes) {
 
-
             Logger logger = new Logger();
             for (Method method : clazz.getDeclaredMethods()) {
+
                 Annotation annotation = method.getAnnotation(Log.class);
+
                 Log log = (Log) annotation;
                 String name = method.getName();
-                ;
                 if (log != null) {
                     try {
                         if (name == "calc1") {
-                            logger.calculation(calc1);
+                            logger.calculation(calc1,name);
                         } else if (name == "calc2") {
-                            logger.calculation(calc2);
+                            logger.calculation(calc2,name);
                         } else if (name == "calc3") {
-                            logger.calculation(calc3);
+                            logger.calculation(calc3,name);
                         }
 
                     } catch (Throwable ex) {
