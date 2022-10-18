@@ -1,5 +1,6 @@
 package otus;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -23,7 +24,14 @@ class Demo {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { //логируем факт вызова
-            System.out.println("method:" + method);
+
+
+                Annotation annotation = method.getAnnotation(Log.class);
+                Log log = (Log) annotation;
+                otus.Proxy proxy1=new otus.Proxy();
+                if (log != null) {
+                    proxy1.logg(method,method.invoke(classInterface, args));
+            }
             return method.invoke(classInterface, args);
         }
 

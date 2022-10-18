@@ -3,7 +3,6 @@ package otus;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -17,18 +16,19 @@ public class Proxy {
     static String calc1 = null;
     static String calc2 = null;
     static String calc3 = null;
-
+    //static List<Class> classes = null;
     public static void main(String[] args) throws IOException, URISyntaxException, ClassNotFoundException {
+       // allClasses("otus");
         ClassInterface classInterface = Demo.newClass();
         calc1 = classInterface.calc1(2);
         calc2 = classInterface.calc2(2, 3);
         calc3 = classInterface.calc3(3, 4, "test");
-        allClasses("otus"); //передаем название пакета, где хранятся классы
+         //передаем название пакета, где хранятся классы
 
     }
 
     //метод ищет все классы в переданном пакете
-    private static Iterable<Class> allClasses(String packageName) throws ClassNotFoundException, IOException, URISyntaxException {
+  /*  private static Iterable<Class> allClasses(String packageName) throws ClassNotFoundException, IOException, URISyntaxException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         String path = packageName.replace('.', '/');
         Enumeration<URL> resources = classLoader.getResources(path);
@@ -38,12 +38,12 @@ public class Proxy {
             URI uri = new URI(resource.toString());
             pathClass.add(new File(uri.getPath()));//записываем пути ко всем классам
         }
-        List<Class> classes = new ArrayList<Class>();
+        classes = new ArrayList<Class>();
         for (File directory : pathClass) {
             classes.addAll(findClasses(directory, packageName));//обращаемся к методу поиска классов и записываем названия всех классов в данной папке
         }
 
-        logg(classes);//вызываем метод логгирования
+       // logg(classes);//вызываем метод логгирования
         return classes;
     }
 
@@ -61,37 +61,43 @@ public class Proxy {
             }
         }
         return classes;
-    }
+    }*/
 
 
-    public static void logg(List<Class> classes) {
+    public static void logg(Method method,Object method3) {
 
-        for (Class clazz : classes) {
+     //  for (Class clazz : classes) {
 
             Logger logger = new Logger();
-            for (Method method : clazz.getDeclaredMethods()) {
+         // for (Method methods : clazz.getDeclaredMethods()) {
 
-                Annotation annotation = method.getAnnotation(Log.class);
+               /* Annotation annotation = method.getAnnotation(Log.class);
 
                 Log log = (Log) annotation;
-                String name = method.getName();
-                if (log != null) {
+
+               if (log != null) {*/
+
+             //
+        String name = method.getName();
+
                     try {
-                        if (name == "calc1") {
+                       /* if (name == "calc1") {
                             logger.calculation(calc1,name);
                         } else if (name == "calc2") {
                             logger.calculation(calc2,name);
                         } else if (name == "calc3") {
                             logger.calculation(calc3,name);
-                        }
+                        }*/
+
+                        logger.calculation(method3,name);
 
                     } catch (Throwable ex) {
                         System.out.println(ex.getCause());
                     }
                 }
-            }
-        }
-    }
+
+
+
 }
 
 
