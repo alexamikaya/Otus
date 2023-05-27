@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 //считаем купюры
+//принцип единственной ответственности - каждый класс отвечает за что-то одно. Класс сумма подсчитывает деньги в банкомате
 public class Sum {
-    private Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
     Money sum = new Money(0,0,0,0);
     int sum100= sum.getSum100();
     int sum200=sum.getSum200();
@@ -14,26 +15,20 @@ public class Sum {
     int sum1000=sum.getSum1000();
 
     //заводим купюры
-    public void add(Integer bank, Integer nom) throws IOException, ClassNotFoundException {
-
-        map.put(bank, nom);
-        getMoney();
-        getMap();
-
+    public void howMuch(Map<Integer,Integer> nom) throws IOException, ClassNotFoundException {
+        getMoney(nom);
     }
 
-    public Map<Integer, Integer> getMap() {
 
-        return map;
-    }
 //считаем сумму купюр
-    public ArrayList<Integer> getMoney(){
+    public ArrayList<Integer> getMoney(Map<Integer, Integer> nom){
+
         sum100=0;
         sum200=0;
         sum500=0;
         sum1000=0;
 
-        for(Map.Entry<Integer, Integer> pair: map.entrySet()){
+        for(Map.Entry<Integer, Integer> pair: nom.entrySet()){
             if(pair.getValue()==100){
                 sum100 += pair.getKey()*pair.getValue();
             }

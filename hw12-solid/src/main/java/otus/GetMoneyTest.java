@@ -10,16 +10,15 @@ class GetMoneyTest {
     void adds() throws IOException, ClassNotFoundException {
 
 
-            Sum addd = new Sum();
-//заводим банкноты в банкомат
-            addd.add(1, 100);
-            addd.add(5, 1000);
-            addd.add(20, 500);
-            addd.add(10, 200);
-        //просим выдать определенную сумму
-            GetMoney getMoney=new GetMoney();
-            getMoney.getMymoney(800, addd.getSum100(), addd.getSum200(), addd.getSum500(), addd.getSum1000());
-
+        ATM atm = new ATM();
+        atm.moneyATM();
+        atm.addATM (1,100);
+        atm.addATM (5,1000);
+        atm.addATM (20,500);
+        atm.addATM (10,200);
+        atm.sumATM(atm.getMap());
+        atm.getATM(800, atm.getSum100(), atm.getSum200(), atm.getSum500(), atm.getSum1000());
+        atm.moneyATM();
 
 
 

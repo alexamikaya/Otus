@@ -1,6 +1,7 @@
 package otus;
 
-// Рассчитываем сколько купюр можем выдать
+
+//принцип единственной ответственности - каждый класс отвечает за что-то одно. Класс getMoney выдает запрошенную сумму имеющимися купюрами
 public class GetMoney {
     Money getMoney=new Money(0,0,0,0);
     int summ100= getMoney.getSum100();
@@ -74,8 +75,8 @@ public class GetMoney {
             summ500 =sum500;
             summ1000 =sum1000;
         }
-        Bank balance=new Bank(getSumm100(),getSumm200(),getSumm500(),getSumm1000(),0);
-        balance.getSum();
+
+
         return 0;
     }
     public int getSumm100(){
