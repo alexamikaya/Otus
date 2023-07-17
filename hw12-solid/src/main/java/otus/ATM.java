@@ -64,7 +64,7 @@ public class ATM implements worldATM {
 
     //выдача денег
     @Override
-    public void get(int money, int nom1, int nom2, int nom3, int nom4) throws IOException, ClassNotFoundException {
+    public void get(int money, int nom1, int nom2, int nom3, int nom4) {
 
         getMoney.getMymoney(money, nom1, nom2, nom3, nom4);
 
