@@ -9,6 +9,7 @@ import java.util.Map;
 public class Deposit {
 
     private Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
     public Map<Integer, Integer> getMap() {
         return map;
     }
@@ -18,7 +19,6 @@ public class Deposit {
         map.put(bank, nom);
         System.out.println(map);
     }
-
 
 
 }

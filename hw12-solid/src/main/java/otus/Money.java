@@ -2,47 +2,47 @@ package otus;
 
 public class Money {
     //сущность банкнота
-    protected int sum100;//купюра номиналом 100 руб
-    protected int sum200;//купюра номиналом 200 руб
-    protected int sum500;//купюра номиналом 500 руб
-    protected int sum1000;//купюра номиналом 1000 руб
+    protected int sumNom1;//купюра номиналом 100 руб
+    protected int sumNom2;//купюра номиналом 200 руб
+    protected int sumNom3;//купюра номиналом 500 руб
+    protected int sumNom4;//купюра номиналом 1000 руб
 
     public Money(int sum100, int sum200, int sum500, int sum1000) {
-        this.sum100 = sum100;
-        this.sum200 = sum200;
-        this.sum500 = sum500;
-        this.sum1000 = sum1000;
+        this.sumNom1 = sumNom1;
+        this.sumNom2 = sumNom2;
+        this.sumNom3 = sumNom3;
+        this.sumNom4 = sumNom4;
     }
 
-    public int getSum1000() {
-        return sum1000;
+    public int getSumNom4() {
+        return sumNom4;
     }
 
-    public void setSum1000(int sum1000) {
-        this.sum1000 = sum1000;
+    public void setSumNom4(int sum1000) {
+        this.sumNom4 = sumNom4;
     }
 
-    public int getSum500() {
-        return sum500;
+    public int getSumNom3() {
+        return sumNom3;
     }
 
-    public void setSum500(int sum500) {
-        this.sum500 = sum500;
+    public void setSumNom3(int sumNom3) {
+        this.sumNom3 = sumNom3;
     }
 
-    public int getSum200() {
-        return sum200;
+    public int getSumNom2() {
+        return sumNom2;
     }
 
-    public void setSum200(int sum200) {
-        this.sum200 = sum200;
+    public void setSumNom2(int sumNom2) {
+        this.sumNom2 = sumNom2;
     }
 
-    public int getSum100() {
-        return sum100;
+    public int getSumNom1() {
+        return sumNom1;
     }
 
-    public void setSum100(int sum100) {
-        this.sum100 = sum100;
+    public void setSumNom1(int sumNom1) {
+        this.sumNom1 = sumNom1;
     }
 }

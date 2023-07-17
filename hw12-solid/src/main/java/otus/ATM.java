@@ -4,53 +4,69 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ATM {
+public class ATM implements worldATM {
 
-    Deposit deposit = new Deposit();
-    Sum sum = new Sum();
-    Map<Integer,Integer> map = new HashMap<>();
-    GetMoney getMoney=new GetMoney();
-    Money allMoney=new Money(0,0,0,0);
-    Bank bank = new Bank(0,0,0,0,0);
+    private Deposit deposit = new Deposit();
+    private Sum sum = new Sum();
+    private Map<Integer, Integer> map = new HashMap<>();
+    private GetMoney getMoney = new GetMoney();
+    private Bank bank = new Bank(0, 0, 0, 0, 0);
 
     //главный класс - сущность банкомата, у него должны быть свои методы и состояния (абстракция)
     //сумма в банкомате
-    public void moneyATM () {
+    @Override
+    public void money() {
 
-        bank.getSum(getMoney.getSumm100(),getMoney.getSumm200(),getMoney.getSumm500(),getMoney.getSumm1000());
+        bank.getSum(getMoney.getSummNom1(), getMoney.getSummNom2(), getMoney.getSummNom3(), getMoney.getSummNom4());
     }
+
     //добавление денег в банкомат
-    public void addATM (Integer a, Integer b) throws IOException, ClassNotFoundException {
+    @Override
+    public void add(int numberBills, int typeBill) throws IOException, ClassNotFoundException {
 
-        deposit.add(a,b);
-        map=deposit.getMap();
+        deposit.add(numberBills, typeBill);
+        map = deposit.getMap();
     }
-    public Map<Integer, Integer> getMap(){
+
+    @Override
+    public Map<Integer, Integer> getMapBill() {
         return map;
     }
+
     //подсчет купюр
-    public void sumATM (Map<Integer,Integer> map) throws IOException, ClassNotFoundException {
+    @Override
+    public void sum(Map<Integer, Integer> map) throws IOException, ClassNotFoundException {
         sum.howMuch(map);
     }
-    public int getSum100() {
 
-        return sum.getSum100();
-    }
-    public int getSum200() {
+    @Override
+    public int getSumNom1() {
 
-        return sum.getSum200();
+        return sum.getSumNom1();
     }
-    public int getSum500() {
 
-        return sum.getSum500();
+    @Override
+    public int getSumNom2() {
+
+        return sum.getSumNom2();
     }
-    public int getSum1000() {
-        return sum.getSum1000();
+
+    @Override
+    public int getSumNom3() {
+
+        return sum.getSumNom3();
     }
+
+    @Override
+    public int getSumNom4() {
+        return sum.getSumNom4();
+    }
+
     //выдача денег
-    public void getATM (Integer money, Integer b, Integer c, Integer d, Integer e) throws IOException, ClassNotFoundException {
+    @Override
+    public void get(int money, int nom1, int nom2, int nom3, int nom4) throws IOException, ClassNotFoundException {
 
-        getMoney.getMymoney(money, b, c, d, e);
+        getMoney.getMymoney(money, nom1, nom2, nom3, nom4);
 
     }
 

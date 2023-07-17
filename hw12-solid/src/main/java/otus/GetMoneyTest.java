@@ -11,15 +11,14 @@ class GetMoneyTest {
 
 
         ATM atm = new ATM();
-        atm.moneyATM();
-        atm.addATM (1,100);
-        atm.addATM (5,1000);
-        atm.addATM (20,500);
-        atm.addATM (10,200);
-        atm.sumATM(atm.getMap());
-        atm.getATM(800, atm.getSum100(), atm.getSum200(), atm.getSum500(), atm.getSum1000());
-        atm.moneyATM();
-
+        atm.money();
+        atm.add(1, 100);
+        atm.add(5, 1000);
+        atm.add(20, 500);
+        atm.add(10, 200);
+        atm.sum(atm.getMapBill());
+        atm.get(800, atm.getSumNom1(), atm.getSumNom2(), atm.getSumNom3(), atm.getSumNom4());
+        atm.money();
 
 
     }
