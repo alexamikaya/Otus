@@ -1,3 +1,5 @@
 rootProject.name = 'Otus_gradle'
 include 'hw01-gradle'
+include 'hw02-annotation'
+include 'hw12-solid'
 
