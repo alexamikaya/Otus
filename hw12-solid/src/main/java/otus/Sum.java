@@ -2,18 +2,19 @@ package otus;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+
+import static java.util.stream.Collectors.*;
 
 //считаем купюры
 //принцип единственной ответственности - каждый класс отвечает за что-то одно. Класс сумма подсчитывает деньги в банкомате
 public class Sum {
 
-    Money sum = new Money(0, 0, 0, 0);
-    int sumNom1 = sum.getSumNom1();
-    int sumNom2 = sum.getSumNom2();
-    int sumNom3 = sum.getSumNom3();
-    int sumNom4 = sum.getSumNom4();
+    private final Money sum = new Money(0, 0, null);
+    int sumNom1 = sum.getSumNom1(0);
+    ArrayList<Integer> list = null;
+    private int finalSum;
 
     //заводим купюры
     public void howMuch(Map<Integer, Integer> nom) throws IOException, ClassNotFoundException {
@@ -23,53 +24,38 @@ public class Sum {
 
     //считаем сумму купюр
     public ArrayList<Integer> getMoney(Map<Integer, Integer> nom) {
+        finalSum = 0;
 
         sumNom1 = 0;
-        sumNom2 = 0;
-        sumNom3 = 0;
-        sumNom4 = 0;
 
-        for (Map.Entry<Integer, Integer> pair : nom.entrySet()) {
-            if (pair.getValue() == 100) {
-                sumNom1 += pair.getKey() * pair.getValue();
-            }
-            if (pair.getValue() == 200) {
-                sumNom2 += pair.getKey() * pair.getValue();
-            }
-            if (pair.getValue() == 500) {
-                sumNom3 += pair.getKey() * pair.getValue();
-            }
-            if (pair.getValue() == 1000) {
-                sumNom4 += pair.getKey() * pair.getValue();
-            }
+        ArrayList<String> list1 = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : nom.entrySet()) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+
+            list1.add(sum.getNominals(key) + "=" + sum.getSumNom1(value));
         }
 
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(sumNom1);
-        list.add(sumNom2);
-        list.add(sumNom3);
-        list.add(sumNom4);
+
+        Map<String, Integer> result = list1.stream().map(e -> e.split("=")).collect(groupingBy(e -> e[0], summingInt(e -> Integer.parseInt(e[1]))));
+        Map<String, Integer> sortedMap = new TreeMap<>(result);
+
+
+        list = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            list.add(sum.getNominals(Integer.parseInt(key)) * sum.getSumNom1(value));
+
+        }
+        for (int i = 0; i < list.size(); i++)
+            finalSum += list.get(i);
+
+        System.out.println("\n" +
+                "ATM machine balance = " + finalSum);
         return list;
 
-    }
 
-    public int getSumNom1() {
-
-        return sumNom1;
-    }
-
-    public int getSumNom2() {
-
-        return sumNom2;
-    }
-
-    public int getSumNom3() {
-
-        return sumNom3;
-    }
-
-    public int getSumNom4() {
-        return sumNom4;
     }
 
 

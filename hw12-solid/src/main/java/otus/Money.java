@@ -1,48 +1,43 @@
 package otus;
 
+import java.util.Map;
+
 public class Money {
     //сущность банкнота
-    protected int sumNom1;//купюра номиналом 100 руб
-    protected int sumNom2;//купюра номиналом 200 руб
-    protected int sumNom3;//купюра номиналом 500 руб
-    protected int sumNom4;//купюра номиналом 1000 руб
+    protected int sumNom1;//купюра
+    protected int nominals;
+    protected Map<Integer, Integer> getSum;
 
-    public Money(int sum100, int sum200, int sum500, int sum1000) {
+
+    public Money(int sumNom1, int nominals, Map<Integer, Integer> getSum) {
         this.sumNom1 = sumNom1;
-        this.sumNom2 = sumNom2;
-        this.sumNom3 = sumNom3;
-        this.sumNom4 = sumNom4;
+        this.nominals = nominals;
+        this.getSum = getSum;
+
     }
 
-    public int getSumNom4() {
-        return sumNom4;
+    public int getNominals(int nominals) {
+        return nominals;
     }
 
-    public void setSumNom4(int sum1000) {
-        this.sumNom4 = sumNom4;
+    public void setNominals(int nominals) {
+        this.nominals = nominals;
     }
 
-    public int getSumNom3() {
-        return sumNom3;
-    }
-
-    public void setSumNom3(int sumNom3) {
-        this.sumNom3 = sumNom3;
-    }
-
-    public int getSumNom2() {
-        return sumNom2;
-    }
-
-    public void setSumNom2(int sumNom2) {
-        this.sumNom2 = sumNom2;
-    }
-
-    public int getSumNom1() {
+    public int getSumNom1(int sumNom1) {
         return sumNom1;
     }
 
     public void setSumNom1(int sumNom1) {
         this.sumNom1 = sumNom1;
+    }
+
+    public Map<Integer, Integer> getSum() {
+        return getSum;
+    }
+
+    public Map<Integer, Integer> setSum() {
+        this.getSum = getSum();
+        return null;
     }
 }

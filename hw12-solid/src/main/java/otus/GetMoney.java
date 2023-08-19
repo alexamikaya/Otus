@@ -1,97 +1,123 @@
 package otus;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 //принцип единственной ответственности - каждый класс отвечает за что-то одно. Класс getMoney выдает запрошенную сумму имеющимися купюрами
 public class GetMoney {
-    Money getMoney = new Money(0, 0, 0, 0);
-    int summNom1 = getMoney.getSumNom1();
-    int summNom2 = getMoney.getSumNom2();
-    int summNom3 = getMoney.getSumNom3();
-    int summNom4 = getMoney.getSumNom4();
+    Money getMoney = new Money(0, 0, null);
+    Map<Integer, Integer> finalSum = getMoney.setSum();
+    Sum sum = new Sum();
 
 
-    public int getMymoney(int i, int sumNom1, int sumNom2, int sumNom3, int sumNom4) {
+    public void getMymoney(int i, Map<Integer, Integer> getMap) {
 
-        if (i >= 100) {
-            int l = 0;
-            int bank1000 = 0;
-            int bank500 = 0;
-            int bank200 = 0;
-            int bank100 = 0;
 
-            if (i <= sumNom4) {
-                bank1000 = i / 1000;
-                summNom4 = sumNom4 - (i / 1000) * 1000;
-                l = i - (i / 1000) * 1000;
+        HashMap<Integer, Integer> finalMap = new HashMap<>();
+        finalSum = getMap;
+        HashMap<Integer, Integer> getMyMoney = new HashMap<>();
+        int ostatok = i;
+        ArrayList<Integer> list = sum.getMoney(getMap);
+        int sumList = 0;
+        for (int r = 0; r < list.size(); r++)
+            sumList += list.get(r);
 
-            } else {
-                l = i - sumNom4;
-                bank1000 = sumNom4;
-                summNom4 = 0;
+        if (i > 0 & i < sumList) {
+            for (Map.Entry<Integer, Integer> entry : getMap.entrySet()) {
+                int key = entry.getKey();
+                int value = entry.getValue();
+                if (ostatok < key) {
+                    finalMap.put(key, value);
+
+                } else if (ostatok / 2 <= key) {
+
+                    int transit = ostatok / key;
+                    ostatok = ostatok - (transit * key);
+                    finalMap.put(key, value - 1);
+                    getMyMoney.put(key, transit);
+
+                } else if (ostatok < key * value) {
+
+                    int transit = ostatok / key;
+                    ostatok = ostatok - (transit * key);
+                    finalMap.put(key, value - transit);
+                    getMyMoney.put(key, transit);
+
+                } else if (ostatok > key * value) {
+
+                    ostatok = ostatok - (value * key);
+                    finalMap.put(key, 0);
+                    getMyMoney.put(key, value);
+
+                } else {
+                    finalMap.put(key, value);
+                }
             }
 
-            if (l <= sumNom3) {
-                bank500 = l / 500;
-                summNom3 = sumNom3 - (l / 500) * 500;
-                l = l - (l / 500) * 500;
+        }
+        if (ostatok != 0) {
+            for (Map.Entry<Integer, Integer> entry : finalMap.entrySet()) {
+                int key = entry.getKey();
+                int value = entry.getValue();
+                if (ostatok == key & value != 0) {
+                    ostatok = ostatok - key;
+                    finalMap.put(key, value - 1);
+                    ArrayList<Integer> listOfKeys = new ArrayList(getMyMoney.keySet());
+                    Iterator<Integer> itr = listOfKeys.iterator();
+                    int result = 0;
+                    while (itr.hasNext()) {
+                        if (itr.next() == key) {
+                            result = 1;
+                        }
 
-            } else {
-                l = l - sumNom3;
-                bank500 = sumNom3;
-                summNom3 = 0;
+                    }
+                    System.out.println("Nice, you can get : ");
+                    for (Map.Entry<Integer, Integer> entry1 : getMyMoney.entrySet()) {
+
+                        Integer key1 = entry1.getKey();
+                        Integer value1 = entry1.getValue();
+                        if (result == 1 & key1 == key) {
+                            getMyMoney.put(key1, value1 + 1);
+                            System.out.println("nominal " + key1 + ": " + (value1 + 1));
+                        } else if (result == 0 & value1 != 0) {
+                            getMyMoney.put(key, 1);
+
+                            System.out.println("nominal " + key + ": " + 1);
+                            System.out.println("nominal " + key1 + ": " + value1);
+                        } else if (value1 != 0) {
+                            System.out.println("nominal " + key1 + ": " + value1);
+                        }
+                    }
+
+
+                } else if (ostatok == key & value == 0) {
+                    finalMap.put(key, value + 1);
+                    ostatok = ostatok + key;
+                    getMyMoney.put(key, value);
+                }
+
             }
-
-            if (l <= sumNom2) {
-                bank200 = l / 200;
-                summNom2 = sumNom2 - (l / 200) * 200;
-                l = l - (l / 200) * 200;
-
-            } else {
-                l = l - sumNom2;
-                bank200 = sumNom2;
-                summNom2 = 0;
-            }
-
-            if (l <= sumNom1) {
-                bank100 = l / 100;
-                summNom1 = sumNom1 - (l / 100) * 100;
-                l = l - (l / 100) * 100;
-
-            } else {
-                bank100 = sumNom1;
-                summNom1 = sumNom1;
-            }
-            if (l != 0) {
-                System.out.println("Error, no money");
-            } else {
-                System.out.println("Nice, you can get : banknote 1000 - " + bank1000 + ", banknote 500 - " + bank500 + ", banknote 200 - " + bank200 + ", banknote 100 - " + bank100);
+            if (ostatok != 0) {
+                System.out.println("no money");
+                return;
             }
 
         } else {
-            summNom1 = sumNom1;
-            summNom2 = sumNom2;
-            summNom3 = sumNom3;
-            summNom4 = sumNom4;
+
+            System.out.println("Nice, you can get : ");
+            for (Map.Entry<Integer, Integer> entry1 : getMyMoney.entrySet()) {
+                Integer key1 = entry1.getKey();
+                Integer value1 = entry1.getValue();
+                System.out.println("nominal " + key1 + ": " + value1);
+            }
         }
-
-
-        return 0;
+        finalSum = finalMap;
     }
 
-    public int getSummNom1() {
-        return summNom1;
+    public Map<Integer, Integer> getFinalSum() {
+        return finalSum;
     }
-
-    public int getSummNom2() {
-        return summNom2;
-    }
-
-    public int getSummNom3() {
-        return summNom3;
-    }
-
-    public int getSummNom4() {
-        return summNom4;
-    }
-
 }

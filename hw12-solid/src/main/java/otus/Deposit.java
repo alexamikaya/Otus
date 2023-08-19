@@ -1,6 +1,5 @@
 package otus;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,15 +8,18 @@ import java.util.Map;
 public class Deposit {
 
     private Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    Money money = new Money(0, 0, null);
+    Map<Integer, Integer> finalSum = money.setSum();
 
     public Map<Integer, Integer> getMap() {
+        finalSum = map;
         return map;
     }
     //заводим купюры
 
-    public void add(Integer bank, Integer nom) throws IOException, ClassNotFoundException {
+    public void add(Integer bank, Integer nom) {
         map.put(bank, nom);
-        System.out.println(map);
+
     }
 
 
